@@ -15,23 +15,72 @@ router.get('/students', function (req, res){
     res.send(students)
 })
 
-router.get('/student-details/:name', function(req, res){
-    /*
-    params is an attribute inside request that contains 
-    dynamic values.
-    This value comes from the request url in the form of an 
-    object where key is the variable defined in code 
-    and value is what is sent in the request
-    */
+router.get('/movies', function(req, res){
+    const movies = ['Harry Potter', 'The Shining', 'Batman', 'Iron Man']
+    res.send(movies)
+})
+
+router.get('/movies/:indexNumber', function(req, res){
+    const movies = ['Harry Potter', 'The Shining', 'Batman', 'Iron Man']
+    let requestParams = req.params
+    let movieName = requestParams.indexNumber
+    for (let i in movies){
+        if(movieName == i){
+            return res.send(movies[i])
+        }
+    }
+    res.send('Error: Put a valid index number')
+    
+})
+
+router.get('/films', function(req, res){
+    const films = [{
+        id: 1,
+        name: "The Shining"
+    }, {
+        id: 2,
+        name: "Incendies"
+    }, {
+        id: 3,
+        name: "Rang de Basanti"
+    }, {
+        id: 4,
+        name: "Finding Nemo"
+    }]
+
+    res.send(films)
+})
+
+router.get('/films/:filmId', function (req, res) {
+    const films = [{
+        id: 1,
+        name: "The Shining"
+    }, {
+        id: 2,
+        name: "Incendies"
+    }, {
+        id: 3,
+        name: "Rang de Basanti"
+    }, {
+        id: 4,
+        name: "Finding Nemo"
+    }]
 
     let requestParams = req.params
+    let filmName = requestParams.filmId
+    for (let i in films) {
+        if (filmName == i) {
+            return res.send(films[i])
+        }
+    }
+    res.send('Error: No movie exists with this id')
+})
 
-    // JSON strigify function helps to print an entire object
-    // We can use any ways to print an object in Javascript, JSON stringify is one of them
+router.get('/student-details/:name', function(req, res){
+    let requestParams = req.params
     console.log("This is the request "+ JSON.stringify(requestParams))
     let studentName = requestParams.name
     console.log('Name of the student is ', studentName)
-    
     res.send('Dummy response')
 })
 
