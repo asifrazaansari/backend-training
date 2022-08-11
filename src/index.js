@@ -41,7 +41,6 @@ app.get("/sol2", function (req, res) {
    
     res.send(  { data: missingNumber  }  );
   });
- 
 
 app.listen(process.env.PORT || 3000, function() {
     console.log('Express app running on port ' + (process.env.PORT || 3000))
