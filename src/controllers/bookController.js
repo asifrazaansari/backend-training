@@ -21,9 +21,8 @@ const getBooksInYear = async function (req, res) {
 }
 
 const getParticularBooks = async function (req, res) {
-    let data = req.query.param
-    //console.log(data)
-    let allBooks = await BookModel.find({isPublished:{$eq: data}})//.count()
+    let data = req.body
+    let allBooks = await BookModel.find(data)
     res.send({ msg: allBooks })
 }
 
