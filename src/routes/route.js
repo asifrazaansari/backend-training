@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const WeatherController = require("../controllers/weatherController")
+const memesController = require("../controllers/memesController")
 
 
+router.get("/memes/id", memesController.gtmemesId)
 
-router.get("/Weather/london", WeatherController.getWeatherLondon)
-router.get("/weather/londonTemp", WeatherController.getLondonTemp)
-router.get("/weather/sortedCities", WeatherController.sortedCitiesWithTemp)
-
+router.post("/creatingMemes", memesController.creatingMemes)
 
 module.exports = router;
