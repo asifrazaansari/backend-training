@@ -15,6 +15,10 @@ const tokenValidation = async function (req, res, next) {
   if (!token) token = req.headers["x-auth-token"];
   if (!token) return res.send({ status: false, msg: "token must be present" });
   let decodedToken = jwt.verify(token, "functionup-plutonium-secret-key");
+  // jwt.verify(token, "functionup-plutonium-very-very-secret-key", (error, response) => {
+  //   if (error) {
+  //       return res.status(500).send({ status: false, msg: "token is invalid" })
+  //   }
   let userId = req.params.userId
   if(!(decodedToken.userId === userId)){
     return res.send({status: false, msg: "userId is not correct, param user and token user not matched"})
